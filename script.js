@@ -7,7 +7,7 @@ const restartButton = document.querySelector('[data-restart]');
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 
-function updateScene(index) {
+function renderScene(index, pushState = true) {
   currentScene = Math.max(0, Math.min(index, lastSceneIndex));
 
   scenes.forEach((scene, i) => {
@@ -22,13 +22,29 @@ function updateScene(index) {
   } else if (currentScene === lastSceneIndex) {
     hint.textContent = '❤';
   } else {
-    hint.textContent = 'Touchez l’écran pour avancer';
+    hint.textContent = 'Touche l’écran pour avancer';
   }
+
+  if (pushState) {
+    const url = new URL(window.location.href);
+    url.hash = `scene-${currentScene}`;
+    history.pushState({ scene: currentScene }, '', url);
+  }
+}
+
+function updateScene(index) {
+  renderScene(index, true);
 }
 
 function goNext() {
   if (currentScene < lastSceneIndex) {
     updateScene(currentScene + 1);
+  }
+}
+
+function goBack() {
+  if (currentScene > 0) {
+    history.back();
   }
 }
 
@@ -46,9 +62,27 @@ document.addEventListener('keydown', (event) => {
     if (currentScene === 0 && document.activeElement === nextButton) return;
     goNext();
   }
+
+  if (event.key === 'ArrowLeft' || event.key === 'Backspace') {
+    goBack();
+  }
+});
+
+window.addEventListener('popstate', (event) => {
+  const sceneFromState = event.state?.scene;
+
+  if (typeof sceneFromState === 'number') {
+    renderScene(sceneFromState, false);
+    return;
+  }
+
+  const hashMatch = window.location.hash.match(/scene-(\d+)/);
+  const hashScene = hashMatch ? Number(hashMatch[1]) : 0;
+  renderScene(hashScene, false);
 });
 
 nextButton?.addEventListener('click', () => updateScene(1));
 restartButton?.addEventListener('click', () => updateScene(0));
 
-updateScene(0);
+history.replaceState({ scene: 0 }, '', '#scene-0');
+renderScene(0, false);
