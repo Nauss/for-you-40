@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Pour tes 40 ans</title>
+    <meta
+      name="description"
+      content="Une surprise d'anniversaire pensée avec amour."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@300;400;500;600&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <div class="ambient ambient-1"></div>
+      <div class="ambient ambient-2"></div>
+      <div class="grain"></div>
+
+      <section class="scene is-active" data-scene="0">
+        <div class="scene-content intro">
+          <p class="eyebrow">2 avril</p>
+          <h1>Pour tes 40 ans</h1>
+          <p class="lead">
+            J’avais envie de t’offrir plus qu’un cadeau.<br />
+            J’avais envie de t’offrir un moment à vivre.
+          </p>
+          <button class="primary-btn" type="button" data-next>
+            Découvrir
+          </button>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="1">
+        <div class="scene-content">
+          <p class="eyebrow">Parce que l’essentiel</p>
+          <h2>ce ne sont pas les objets</h2>
+          <p class="lead">
+            Ce sont les souvenirs qui restent,<br />
+            les éclats de rire, les départs, les instants qu’on partage.
+          </p>
+          <p class="subtle">Toi, moi, Lana et Léo.</p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="2">
+        <div class="scene-content">
+          <p class="eyebrow">Alors oui…</p>
+          <h2>il y aura un grand voyage</h2>
+          <p class="display-line">Les États-Unis</p>
+          <p class="lead">
+            Une belle aventure en famille nous attend.<br />
+            Un de ces souvenirs qu’on gardera longtemps.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="3">
+        <div class="scene-content">
+          <p class="eyebrow">Mais</p>
+          <h2>je n’avais pas envie d’attendre juin</h2>
+          <p class="lead">
+            Pas envie d’attendre pour commencer à célébrer,<br />
+            à s’évader, à te faire sourire.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="4">
+        <div class="scene-content reveal">
+          <p class="eyebrow">Alors…</p>
+          <h2 class="big-reveal">fais tes valises</h2>
+          <p class="display-line accent">on part demain</p>
+          <p class="lead">
+            Pour une parenthèse surprise,<br />
+            au calme, en pleine nature,<br />
+            tous les quatre.
+          </p>
+        </div>
+      </section>
+
+      <section class="scene" data-scene="5">
+        <div class="scene-content final-scene">
+          <p class="eyebrow">Quelques indices</p>
+          <div class="clues">
+            <span>🌿 nature</span>
+            <span>✨ douceur</span>
+            <span>🌙 une nuit ailleurs</span>
+            <span>💚 nous quatre</span>
+          </div>
+          <p class="lead final-note">
+            Joyeux anniversaire mon amour.<br />
+            Le plus beau, c’est tout ce qu’il nous reste encore à vivre ensemble.
+          </p>
+          <button class="ghost-btn" type="button" data-restart>
+            Revoir depuis le début
+          </button>
+        </div>
+      </section>
+
+      <div class="bottom-ui">
+        <div class="progress" aria-hidden="true">
+          <span class="progress-bar"></span>
+        </div>
+        <p class="hint">Touchez l’écran pour avancer</p>
+      </div>
+    </main>
+
+    <script src="script.js"></script>
+  </body>
+</html>
