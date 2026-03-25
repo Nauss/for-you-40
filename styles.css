@@ -149,10 +149,12 @@ h2 {
 
 h1 {
   font-size: clamp(3.2rem, 10vw, 4.8rem);
+  text-wrap: balance;
 }
 
 h2 {
   font-size: clamp(2.5rem, 8vw, 4rem);
+  text-wrap: balance;
 }
 
 .lead {
@@ -160,6 +162,7 @@ h2 {
   font-size: 1.02rem;
   line-height: 1.72;
   color: var(--text);
+  text-wrap: pretty;
 }
 
 .subtle {
@@ -181,6 +184,23 @@ h2 {
 
 .accent {
   color: #406f4d;
+}
+
+.pulse {
+  position: relative;
+  display: inline-block;
+  animation: pulseReveal 2.4s ease-in-out infinite;
+}
+
+@keyframes pulseReveal {
+  0%, 100% {
+    transform: scale(1);
+    text-shadow: 0 0 0 rgba(64, 111, 77, 0);
+  }
+  50% {
+    transform: scale(1.035);
+    text-shadow: 0 8px 28px rgba(64, 111, 77, 0.14);
+  }
 }
 
 .primary-btn,
@@ -368,8 +388,10 @@ h2 {
   width: 100%;
   aspect-ratio: 16 / 10;
   object-fit: cover;
+  object-position: center center;
   border-radius: 22px;
   box-shadow: 0 16px 34px rgba(40, 52, 42, 0.14);
+  transform: scale(1.08);
 }
 
 @media (min-width: 700px) {
