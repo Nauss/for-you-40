@@ -6,6 +6,7 @@ const restartButton = document.querySelector('[data-restart]');
 
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
+const fakeEndingScene = 6;
 
 function renderScene(index, pushState = true) {
   currentScene = Math.max(0, Math.min(index, lastSceneIndex));
@@ -14,15 +15,14 @@ function renderScene(index, pushState = true) {
     scene.classList.toggle('is-active', i === currentScene);
   });
 
-  const progress = ((currentScene + 1) / scenes.length) * 100;
+  const cappedScene = Math.min(currentScene, fakeEndingScene);
+  const progress = ((cappedScene + 1) / (fakeEndingScene + 1)) * 100;
   progressBar.style.width = `${progress}%`;
 
-  if (currentScene === 0) {
-    hint.textContent = '';
-  } else if (currentScene === lastSceneIndex) {
+  if (currentScene >= fakeEndingScene) {
     hint.textContent = '❤';
   } else {
-    hint.textContent = 'Touche l’écran pour avancer';
+    hint.textContent = '';
   }
 
   if (pushState) {
