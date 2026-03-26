@@ -2,20 +2,22 @@
   <defs>
     <style>
       @font-face {
-        font-family: 'Cormorant Garamond Local';
-        src: url('assets/fonts/CormorantGaramond-Regular.woff2') format('woff2');
-        font-weight: 400;
+        font-family: 'Cormorant Garamond Print';
+        src: url('assets/fonts/CormorantGaramond-SemiBold.woff2') format('woff2');
+        font-weight: 600;
         font-style: normal;
       }
       .forty {
-        font-family: 'Cormorant Garamond Local', 'Cormorant Garamond', serif;
-        font-size: 118px;
-        font-weight: 400;
-        fill: #111111;
+        font-family: 'Cormorant Garamond Print', serif;
+        font-size: 124px;
+        font-weight: 600;
+        letter-spacing: -0.02em;
+        line-height: 0.96;
+        fill: #1e2a22;
       }
     </style>
   </defs>
   <rect width="744" height="1052" fill="white"/>
   <image href="qr_raw.png" x="132" y="150" width="480" height="480" preserveAspectRatio="none"/>
-  <text x="372" y="810" text-anchor="middle" class="forty">40</text>
+  <text x="372" y="804" text-anchor="middle" dominant-baseline="middle" class="forty">40</text>
 </svg>
