@@ -4,6 +4,7 @@ const hint = document.querySelector('.hint');
 const nextButton = document.querySelector('[data-next]');
 const restartButton = document.querySelector('[data-restart]');
 const appShell = document.querySelector('.app-shell');
+const bottomUi = document.querySelector('.bottom-ui');
 
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
@@ -44,6 +45,10 @@ function renderScene(index, pushState = true) {
     hint.textContent = '❤';
   } else {
     hint.textContent = '';
+  }
+
+  if (bottomUi) {
+    bottomUi.style.display = currentScene === lastSceneIndex ? 'none' : '';
   }
 
   if (pushState) {

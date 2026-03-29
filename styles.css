@@ -364,7 +364,7 @@ h2 {
   background:
     linear-gradient(180deg, rgba(12, 8, 16, 0.08), rgba(12, 8, 16, 0.38)),
     url('cabane.jpg') center center / cover no-repeat;
-  filter: blur(28px);
+  filter: blur(22px);
   transform: scale(1.12);
 }
 
@@ -392,11 +392,6 @@ h2 {
 .cabin-restart {
   position: relative;
   z-index: 1;
-}
-
-.cabin-fullscreen-scene ~ .bottom-ui,
-.scene[data-scene="10"].is-active ~ .bottom-ui {
-  display: none;
 }
 
 .cabin-restart-bottom {
