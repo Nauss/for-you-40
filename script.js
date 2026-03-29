@@ -3,10 +3,23 @@ const progressBar = document.querySelector('.progress-bar');
 const hint = document.querySelector('.hint');
 const nextButton = document.querySelector('[data-next]');
 const restartButton = document.querySelector('[data-restart]');
+const appShell = document.querySelector('.app-shell');
 
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 const fakeEndingScene = 6;
+
+const swipeState = {
+  startX: 0,
+  startY: 0,
+  deltaX: 0,
+  deltaY: 0,
+  tracking: false,
+  lockedAxis: null,
+};
+
+const SWIPE_THRESHOLD = 50;
+const AXIS_LOCK_THRESHOLD = 12;
 
 function renderScene(index, pushState = true) {
   currentScene = Math.max(0, Math.min(index, lastSceneIndex));
@@ -52,6 +65,65 @@ function shouldIgnoreTap(target) {
   return Boolean(target.closest('button'));
 }
 
+function resetSwipe() {
+  swipeState.startX = 0;
+  swipeState.startY = 0;
+  swipeState.deltaX = 0;
+  swipeState.deltaY = 0;
+  swipeState.tracking = false;
+  swipeState.lockedAxis = null;
+}
+
+function onPointerDown(event) {
+  if (event.pointerType === 'mouse' && event.button !== 0) return;
+  swipeState.startX = event.clientX;
+  swipeState.startY = event.clientY;
+  swipeState.deltaX = 0;
+  swipeState.deltaY = 0;
+  swipeState.tracking = true;
+  swipeState.lockedAxis = null;
+}
+
+function onPointerMove(event) {
+  if (!swipeState.tracking) return;
+
+  swipeState.deltaX = event.clientX - swipeState.startX;
+  swipeState.deltaY = event.clientY - swipeState.startY;
+
+  if (!swipeState.lockedAxis) {
+    if (
+      Math.abs(swipeState.deltaX) < AXIS_LOCK_THRESHOLD &&
+      Math.abs(swipeState.deltaY) < AXIS_LOCK_THRESHOLD
+    ) {
+      return;
+    }
+
+    swipeState.lockedAxis =
+      Math.abs(swipeState.deltaX) >= Math.abs(swipeState.deltaY) ? 'x' : 'y';
+  }
+
+  if (swipeState.lockedAxis === 'x') {
+    event.preventDefault();
+  }
+}
+
+function onPointerUp() {
+  if (!swipeState.tracking) return;
+
+  const { deltaX, deltaY, lockedAxis } = swipeState;
+  const isHorizontal = lockedAxis === 'x' && Math.abs(deltaX) > Math.abs(deltaY);
+
+  if (isHorizontal && Math.abs(deltaX) >= SWIPE_THRESHOLD) {
+    if (deltaX < 0) {
+      goNext();
+    } else {
+      goBack();
+    }
+  }
+
+  resetSwipe();
+}
+
 document.addEventListener('click', (event) => {
   if (shouldIgnoreTap(event.target)) return;
   goNext();
@@ -80,6 +152,14 @@ window.addEventListener('popstate', (event) => {
   const hashScene = hashMatch ? Number(hashMatch[1]) : 0;
   renderScene(hashScene, false);
 });
+
+if (appShell) {
+  appShell.addEventListener('pointerdown', onPointerDown, { passive: true });
+  appShell.addEventListener('pointermove', onPointerMove, { passive: false });
+  appShell.addEventListener('pointerup', onPointerUp);
+  appShell.addEventListener('pointercancel', resetSwipe);
+  appShell.addEventListener('pointerleave', onPointerUp);
+}
 
 nextButton?.addEventListener('click', () => updateScene(1));
 restartButton?.addEventListener('click', () => updateScene(0));
