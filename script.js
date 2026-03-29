@@ -29,7 +29,7 @@ function renderScene(index, pushState = true) {
   });
 
   const cappedScene = Math.min(currentScene, fakeEndingScene);
-  const progress = ((cappedScene + 1) / (fakeEndingScene + 1)) * 100;
+  const progress = fakeEndingScene === 0 ? 100 : (cappedScene / fakeEndingScene) * 100;
   progressBar.style.width = `${progress}%`;
 
   if (currentScene >= fakeEndingScene) {
