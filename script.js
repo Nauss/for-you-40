@@ -9,24 +9,7 @@ let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 const fakeEndingScene = 7;
 const DEFAULT_THEME = 'default';
-const THEME_ALIASES = {
-  luxe: 'luxe',
-  'luxe-romantique': 'luxe',
-  roadtrip: 'roadtrip',
-  'roadtrip-polaroid': 'roadtrip',
-  cine: 'cine',
-  'cine-premium': 'cine',
-  editorial: 'editorial',
-  sunset: 'sunset',
-  minimal: 'minimal',
-  default: 'default',
-  mix: 'mix',
-  mix1: 'mix1',
-  mix2: 'mix2',
-  mix3: 'mix3',
-};
-
-const AVAILABLE_THEMES = new Set(Object.values(THEME_ALIASES));
+const AVAILABLE_THEMES = new Set(['default']);
 
 const swipeState = {
   startX: 0,
@@ -40,20 +23,10 @@ const swipeState = {
 const SWIPE_THRESHOLD = 50;
 const AXIS_LOCK_THRESHOLD = 12;
 
-function normalizeTheme(themeName) {
-  return THEME_ALIASES[themeName] || DEFAULT_THEME;
-}
-
-function applyTheme(themeName) {
-  const safeTheme = normalizeTheme(themeName);
+function applyTheme() {
   document.body.classList.remove(...Array.from(AVAILABLE_THEMES, (name) => `theme-${name}`));
-  document.body.classList.add(`theme-${safeTheme}`);
-  document.body.dataset.theme = safeTheme;
-}
-
-function getThemeFromUrl() {
-  const params = new URLSearchParams(window.location.search);
-  return params.get('theme') || DEFAULT_THEME;
+  document.body.classList.add(`theme-${DEFAULT_THEME}`);
+  document.body.dataset.theme = DEFAULT_THEME;
 }
 
 function renderScene(index, pushState = true) {
@@ -196,9 +169,9 @@ if (appShell) {
   appShell.addEventListener('pointerleave', onPointerUp);
 }
 
-applyTheme(getThemeFromUrl());
+applyTheme();
 nextButton?.addEventListener('click', () => updateScene(1));
 restartButton?.addEventListener('click', () => updateScene(0));
 
-history.replaceState({ scene: 0 }, '', `${window.location.search}#scene-0`);
+history.replaceState({ scene: 0 }, '', '#scene-0');
 renderScene(0, false);
