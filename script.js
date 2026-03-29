@@ -9,15 +9,21 @@ let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 const fakeEndingScene = 7;
 const DEFAULT_THEME = 'default';
-const AVAILABLE_THEMES = new Set([
-  'default',
-  'editorial',
-  'sunset',
-  'minimal',
-  'luxe-romantique',
-  'roadtrip-polaroid',
-  'cine-premium',
-]);
+const THEME_ALIASES = {
+  luxe: 'luxe',
+  'luxe-romantique': 'luxe',
+  roadtrip: 'roadtrip',
+  'roadtrip-polaroid': 'roadtrip',
+  cine: 'cine',
+  'cine-premium': 'cine',
+  editorial: 'editorial',
+  sunset: 'sunset',
+  minimal: 'minimal',
+  default: 'default',
+  mix: 'mix',
+};
+
+const AVAILABLE_THEMES = new Set(Object.values(THEME_ALIASES));
 
 const swipeState = {
   startX: 0,
@@ -31,8 +37,12 @@ const swipeState = {
 const SWIPE_THRESHOLD = 50;
 const AXIS_LOCK_THRESHOLD = 12;
 
+function normalizeTheme(themeName) {
+  return THEME_ALIASES[themeName] || DEFAULT_THEME;
+}
+
 function applyTheme(themeName) {
-  const safeTheme = AVAILABLE_THEMES.has(themeName) ? themeName : DEFAULT_THEME;
+  const safeTheme = normalizeTheme(themeName);
   document.body.classList.remove(...Array.from(AVAILABLE_THEMES, (name) => `theme-${name}`));
   document.body.classList.add(`theme-${safeTheme}`);
   document.body.dataset.theme = safeTheme;

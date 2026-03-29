@@ -106,6 +106,7 @@ body.theme-minimal {
   --glass-accent: rgba(47, 106, 82, 0.04);
 }
 
+body.theme-luxe,
 body.theme-luxe-romantique {
   --bg: #f6efe9;
   --bg-2: #eaded8;
@@ -133,6 +134,7 @@ body.theme-luxe-romantique {
   --glass-accent: rgba(176, 106, 122, 0.08);
 }
 
+body.theme-roadtrip,
 body.theme-roadtrip-polaroid {
   --bg: #f4ecd9;
   --bg-2: #e8dcc0;
@@ -160,6 +162,7 @@ body.theme-roadtrip-polaroid {
   --glass-accent: rgba(194, 109, 61, 0.05);
 }
 
+body.theme-cine,
 body.theme-cine-premium {
   --bg: #121418;
   --bg-2: #1d2430;
@@ -185,4 +188,31 @@ body.theme-cine-premium {
   --body-gradient: radial-gradient(circle at top, #202733 0%, #13171d 46%, #0d0f13 100%);
   --glass-highlight: rgba(255,255,255,0.14);
   --glass-accent: rgba(212, 167, 95, 0.08);
+}
+
+body.theme-mix {
+  --bg: #1a1720;
+  --bg-2: #2f2534;
+  --text: #f9f0ec;
+  --muted: #d6bec1;
+  --accent: #d18b94;
+  --accent-strong: #f2c59a;
+  --accent-soft: rgba(209, 139, 148, 0.16);
+  --card: rgba(35, 25, 39, 0.72);
+  --card-top: rgba(58, 41, 60, 0.92);
+  --card-bottom: rgba(31, 23, 35, 0.84);
+  --border: rgba(233, 183, 160, 0.16);
+  --shadow: 0 34px 110px rgba(8, 5, 12, 0.42);
+  --ambient-1: rgba(209, 139, 148, 0.2);
+  --ambient-2: rgba(242, 197, 154, 0.12);
+  --grain-dot: #f2ddd2;
+  --progress-from: #f2c59a;
+  --progress-to: #c56d7d;
+  --button-from: #b45d70;
+  --button-to: #f0b989;
+  --ghost-bg: rgba(255, 255, 255, 0.08);
+  --clue-bg: rgba(255, 255, 255, 0.08);
+  --body-gradient: radial-gradient(circle at top, #3a2a3d 0%, #221a2a 48%, #130f18 100%);
+  --glass-highlight: rgba(255,255,255,0.16);
+  --glass-accent: rgba(233, 183, 160, 0.08);
 }
