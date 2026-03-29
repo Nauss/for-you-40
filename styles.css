@@ -349,27 +349,45 @@ h2 {
   align-items: stretch;
 }
 
-.memory-scene,
-.cabin-scene {
+.memory-scene {
   width: min(100%, 450px);
 }
 
-.cabin-scene {
-  padding-bottom: 24px;
+.cabin-fullscreen-scene {
+  padding: 0;
 }
 
-.cabin-photo-wrap {
-  position: relative;
-  z-index: 1;
-  margin-bottom: 20px;
-  overflow: hidden;
-  border-radius: 24px;
+.cabin-scene.cabin-scene-fullbleed {
+  width: 100%;
+  max-width: none;
+  height: 100vh;
+  height: 100dvh;
+  padding: max(24px, env(safe-area-inset-top)) 22px max(28px, env(safe-area-inset-bottom));
+  border: 0;
+  border-radius: 0;
+  background:
+    linear-gradient(180deg, rgba(12, 8, 16, 0.12), rgba(12, 8, 16, 0.34)),
+    url('cabane.jpg') center center / cover no-repeat;
+  backdrop-filter: none;
+  box-shadow: none;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.cabin-scene.cabin-scene-fullbleed::before,
+.cabin-scene.cabin-scene-fullbleed::after {
+  display: none;
 }
 
 .cabin-restart {
   position: relative;
   z-index: 1;
-  margin-top: 8px;
+}
+
+.cabin-restart-bottom {
+  margin-top: 0;
+  margin-bottom: 0;
 }
 
 .memory-photo-wrap {
@@ -378,8 +396,7 @@ h2 {
   margin-bottom: 18px;
 }
 
-.memory-photo,
-.cabin-photo {
+.memory-photo {
   display: block;
   width: 100%;
   aspect-ratio: 16 / 10;
@@ -387,15 +404,7 @@ h2 {
   object-position: center center;
   border-radius: 22px;
   box-shadow: 0 16px 34px rgba(40, 52, 42, 0.14);
-}
-
-.memory-photo {
   transform: scale(1.08);
-}
-
-.cabin-photo {
-  filter: blur(18px);
-  transform: scale(1.1);
 }
 
 @media (min-width: 700px) {
@@ -408,8 +417,7 @@ h2 {
     padding: 24px;
   }
 
-  .memory-scene,
-  .cabin-scene {
+  .memory-scene {
     width: min(100%, 560px);
   }
 }
