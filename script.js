@@ -8,6 +8,8 @@ const appShell = document.querySelector('.app-shell');
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 const fakeEndingScene = 7;
+const DEFAULT_THEME = 'default';
+const AVAILABLE_THEMES = new Set(['default', 'editorial', 'sunset', 'minimal']);
 
 const swipeState = {
   startX: 0,
@@ -20,6 +22,18 @@ const swipeState = {
 
 const SWIPE_THRESHOLD = 50;
 const AXIS_LOCK_THRESHOLD = 12;
+
+function applyTheme(themeName) {
+  const safeTheme = AVAILABLE_THEMES.has(themeName) ? themeName : DEFAULT_THEME;
+  document.body.classList.remove(...Array.from(AVAILABLE_THEMES, (name) => `theme-${name}`));
+  document.body.classList.add(`theme-${safeTheme}`);
+  document.body.dataset.theme = safeTheme;
+}
+
+function getThemeFromUrl() {
+  const params = new URLSearchParams(window.location.search);
+  return params.get('theme') || DEFAULT_THEME;
+}
 
 function renderScene(index, pushState = true) {
   currentScene = Math.max(0, Math.min(index, lastSceneIndex));
@@ -161,8 +175,9 @@ if (appShell) {
   appShell.addEventListener('pointerleave', onPointerUp);
 }
 
+applyTheme(getThemeFromUrl());
 nextButton?.addEventListener('click', () => updateScene(1));
 restartButton?.addEventListener('click', () => updateScene(0));
 
-history.replaceState({ scene: 0 }, '', '#scene-0');
+history.replaceState({ scene: 0 }, '', `${window.location.search}#scene-0`);
 renderScene(0, false);
