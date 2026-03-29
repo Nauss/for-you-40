@@ -9,7 +9,15 @@ let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
 const fakeEndingScene = 7;
 const DEFAULT_THEME = 'default';
-const AVAILABLE_THEMES = new Set(['default', 'editorial', 'sunset', 'minimal']);
+const AVAILABLE_THEMES = new Set([
+  'default',
+  'editorial',
+  'sunset',
+  'minimal',
+  'luxe-romantique',
+  'roadtrip-polaroid',
+  'cine-premium',
+]);
 
 const swipeState = {
   startX: 0,
