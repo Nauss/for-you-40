@@ -355,6 +355,17 @@ h2 {
 
 .cabin-fullscreen-scene {
   padding: 0;
+  overflow: hidden;
+}
+
+.cabin-bg {
+  position: absolute;
+  inset: -24px;
+  background:
+    linear-gradient(180deg, rgba(12, 8, 16, 0.08), rgba(12, 8, 16, 0.38)),
+    url('cabane.jpg') center center / cover no-repeat;
+  filter: blur(28px);
+  transform: scale(1.12);
 }
 
 .cabin-scene.cabin-scene-fullbleed {
@@ -365,9 +376,7 @@ h2 {
   padding: max(24px, env(safe-area-inset-top)) 22px max(28px, env(safe-area-inset-bottom));
   border: 0;
   border-radius: 0;
-  background:
-    linear-gradient(180deg, rgba(12, 8, 16, 0.12), rgba(12, 8, 16, 0.34)),
-    url('cabane.jpg') center center / cover no-repeat;
+  background: transparent;
   backdrop-filter: none;
   box-shadow: none;
   display: flex;
@@ -383,6 +392,11 @@ h2 {
 .cabin-restart {
   position: relative;
   z-index: 1;
+}
+
+.cabin-fullscreen-scene ~ .bottom-ui,
+.scene[data-scene="10"].is-active ~ .bottom-ui {
+  display: none;
 }
 
 .cabin-restart-bottom {
