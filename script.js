@@ -7,7 +7,7 @@ const appShell = document.querySelector('.app-shell');
 
 let currentScene = 0;
 const lastSceneIndex = scenes.length - 1;
-const fakeEndingScene = 6;
+const fakeEndingScene = 7;
 
 const swipeState = {
   startX: 0,
