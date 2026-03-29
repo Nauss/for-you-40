@@ -21,6 +21,9 @@ const THEME_ALIASES = {
   minimal: 'minimal',
   default: 'default',
   mix: 'mix',
+  mix1: 'mix1',
+  mix2: 'mix2',
+  mix3: 'mix3',
 };
 
 const AVAILABLE_THEMES = new Set(Object.values(THEME_ALIASES));
