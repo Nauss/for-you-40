@@ -364,7 +364,7 @@ h2 {
   background:
     linear-gradient(180deg, rgba(12, 8, 16, 0.08), rgba(12, 8, 16, 0.38)),
     url('cabane.jpg') center center / cover no-repeat;
-  filter: blur(22px);
+  filter: blur(18px);
   transform: scale(1.12);
 }
 
